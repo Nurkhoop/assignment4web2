@@ -5,9 +5,10 @@
     "dotenv": "^17.2.3",
     "express": "^4.22.1",
     "jsonwebtoken": "^9.0.3",
-    "mongoose": "^9.1.5"
+    "mongoose": "^9.1.5",
+    "socket.io": "^4.7.5"
   },
-  "name": "assignment4web2",
+  "name": "finalprojectweb2",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",

@@ -1,0 +1,291 @@
+{
+  "info": {
+    "name": "Vibegram API",
+    "_postman_id": "vibegram-api-collection",
+    "description": "Postman collection for Vibegram backend API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5001/api" },
+    { "key": "token", "value": "" },
+    { "key": "chatId", "value": "" },
+    { "key": "messageId", "value": "" },
+    { "key": "userId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/auth/register", "host": ["{{baseUrl}}"], "path": ["auth", "register"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get Users (auth)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/users", "host": ["{{baseUrl}}"], "path": ["users"] }
+          }
+        },
+        {
+          "name": "Update My Settings",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/users/me/settings", "host": ["{{baseUrl}}"], "path": ["users", "me", "settings"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"theme\": \"dark\",\n  \"notifications\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Update My Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/users/me/profile", "host": ["{{baseUrl}}"], "path": ["users", "me", "profile"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"displayName\": \"Nurkhan\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/users/me/password", "host": ["{{baseUrl}}"], "path": ["users", "me", "password"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currentPassword\": \"password123\",\n  \"newPassword\": \"newpass123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Set User Role (admin)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/users/{{userId}}/role", "host": ["{{baseUrl}}"], "path": ["users", "{{userId}}", "role"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role\": \"admin\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Block/Unblock User (admin)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/users/{{userId}}/block", "host": ["{{baseUrl}}"], "path": ["users", "{{userId}}", "block"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isBlocked\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Restore User (admin)",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/users/{{userId}}/restore", "host": ["{{baseUrl}}"], "path": ["users", "{{userId}}", "restore"] }
+          }
+        },
+        {
+          "name": "Delete User (admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/users/{{userId}}", "host": ["{{baseUrl}}"], "path": ["users", "{{userId}}"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Chats",
+      "item": [
+        {
+          "name": "Get My Chats",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/chats", "host": ["{{baseUrl}}"], "path": ["chats"] }
+          }
+        },
+        {
+          "name": "Get Chat By Id",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/chats/{{chatId}}", "host": ["{{baseUrl}}"], "path": ["chats", "{{chatId}}"] }
+          }
+        },
+        {
+          "name": "Create Chat",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/chats", "host": ["{{baseUrl}}"], "path": ["chats"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Project Chat\",\n  \"participants\": [\"friend@example.com\"]\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Chat",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/chats/{{chatId}}", "host": ["{{baseUrl}}"], "path": ["chats", "{{chatId}}"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Chat Title\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Chat",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/chats/{{chatId}}", "host": ["{{baseUrl}}"], "path": ["chats", "{{chatId}}"] }
+          }
+        },
+        {
+          "name": "Get All Chats (admin)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/chats/admin/all", "host": ["{{baseUrl}}"], "path": ["chats", "admin", "all"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Messages",
+      "item": [
+        {
+          "name": "Get Messages By Chat",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/messages/chat/{{chatId}}", "host": ["{{baseUrl}}"], "path": ["messages", "chat", "{{chatId}}"] }
+          }
+        },
+        {
+          "name": "Search Messages By Chat",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{baseUrl}}/messages/chat/{{chatId}}/search?q=hello",
+              "host": ["{{baseUrl}}"],
+              "path": ["messages", "chat", "{{chatId}}", "search"],
+              "query": [{ "key": "q", "value": "hello" }]
+            }
+          }
+        },
+        {
+          "name": "Mark Chat Read",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/messages/chat/{{chatId}}/read", "host": ["{{baseUrl}}"], "path": ["messages", "chat", "{{chatId}}", "read"] }
+          }
+        },
+        {
+          "name": "Send Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "url": { "raw": "{{baseUrl}}/messages/chat/{{chatId}}", "host": ["{{baseUrl}}"], "path": ["messages", "chat", "{{chatId}}"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"Hello from Postman\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Feedback",
+      "item": [
+        {
+          "name": "Submit Feedback",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/feedback", "host": ["{{baseUrl}}"], "path": ["feedback"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Student\",\n  \"email\": \"student@example.com\",\n  \"message\": \"Great project!\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Feedback (admin)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/feedback", "host": ["{{baseUrl}}"], "path": ["feedback"] }
+          }
+        }
+      ]
+    }
+  ]
+}

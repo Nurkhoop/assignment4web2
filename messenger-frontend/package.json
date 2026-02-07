@@ -1,0 +1,49 @@
+{
+  "name": "finalprojectweb2-frontend",
+  "version": "1.0.0",
+  "description": "A real-time messaging application frontend.",
+  "main": "src/main.tsx",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "lint": "eslint . --ext .ts,.tsx",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.2.3",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "redux": "^4.1.0",
+    "react-redux": "^8.0.0",
+    "axios": "^0.21.1",
+    "socket.io-client": "^4.0.0",
+    "tailwindcss": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.67",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react": "^4.2.1",
+    "typescript": "^4.0.0",
+    "vite": "^4.5.0",
+    "eslint": "^7.0.0",
+    "vitest": "^0.0.0"
+  },
+  "keywords": [
+    "messaging",
+    "react",
+    "redux",
+    "real-time"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "homepage": "https://github.com/yourusername/messenger-frontend",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/messenger-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/messenger-frontend/issues"
+  }
+}
